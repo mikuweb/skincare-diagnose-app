@@ -77,7 +77,7 @@ export default function Home() {
           <p className="text-center mb-6">
             質問に答えてください: {activeQuestion + 1}/{questions.length}
           </p>
-          <div className="border border-cyan-900 rounded-sm flex flex-col gap-5 text-center w-3/5 mx-auto  mb-6 p-7 ">
+          <div className="border border-cyan-900 rounded-md flex flex-col gap-5 text-center w-3/5 mx-auto  mb-6 p-7 ">
             <p>{questions[activeQuestion].question}</p>
             <div className="w-full grid grid-cols-2 gap-4">
               {questions[activeQuestion].options.map((option, idx) => (
@@ -87,7 +87,7 @@ export default function Home() {
                     selectedAnswerIdx === idx
                       ? "bg-cyan-300"
                       : "hover:bg-cyan-50"
-                  } border border-steal-400 rounded-sm py-2 px-3`}
+                  } border border-steal-400 rounded-md py-2 px-3`}
                   onClick={() => handleSelect(idx)}
                 >
                   {option}
@@ -100,7 +100,7 @@ export default function Home() {
               type="button"
               className={`${
                 activeQuestion === 0 ? "hidden" : ""
-              } w-fit border border-steal-400 rounded-sm mx-auto py-2 px-3 hover:bg-cyan-300`}
+              } w-fit border border-steal-400 rounded-md mx-auto py-2 px-3 hover:bg-cyan-300`}
               onClick={backToPrevQ}
             >
               前の質問へ戻る
@@ -110,7 +110,7 @@ export default function Home() {
               type="button"
               className={`${
                 activeQuestion === questions.length - 1 ? "hidden" : ""
-              } w-fit border border-steal-400 rounded-sm mx-auto py-2 px-3 hover:bg-cyan-300 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50`}
+              } w-fit border border-steal-400 rounded-md mx-auto py-2 px-3 hover:bg-cyan-300 disabled:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-50`}
               onClick={goToNextQ}
               disabled={selectedAnswerIdx === undefined}
             >
@@ -120,7 +120,7 @@ export default function Home() {
               type="button"
               className={`${
                 activeQuestion !== questions.length - 1 ? "hidden" : ""
-              } w-fit border border-steal-400 rounded-sm mx-auto py-2 px-3 hover:bg-cyan-300 disabled`}
+              } w-fit border border-steal-400 rounded-md mx-auto py-2 px-3 hover:bg-cyan-300 disabled`}
               onClick={submitAnswers}
             >
               診断結果を見る（無料）
