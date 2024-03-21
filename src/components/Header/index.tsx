@@ -20,14 +20,14 @@ const Header: FC = () => {
   return (
     <nav
       className={`${
-        openMenu ? "h-full" : ""
-      } fixed flex flex-col items-start justify-between w-full bg-transparent z-10 
-      lg:flex-row lg:items-center`}
+        openMenu ? "h-full bg-transparent" : "bg-white"
+      } fixed flex flex-col items-start justify-between w-full z-10 
+      lg:flex-row lg:items-center lg:px-4`}
     >
       <div
         className={`${
           openMenu ? "hidden" : "block"
-        } w-fit h-12 flex items-center ml-3 font-english text-white`}
+        } w-fit h-12 flex items-center ml-3 font-english text-brown-100`}
       >
         Skin Care
       </div>
@@ -62,7 +62,7 @@ const Header: FC = () => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="lucide lucide-menu text-white"
+            className="lucide lucide-menu text-brown-100"
           >
             <line x1="4" x2="20" y1="12" y2="12" />
             <line x1="4" x2="20" y1="6" y2="6" />
@@ -74,7 +74,7 @@ const Header: FC = () => {
       <div
         className={`${openMenu ? "flex" : "hidden"} 
         w-full h-3/4 flex-col justify-center gap-16 bg-beige-100 bg-opacity-90 text-center pt12 pb-16 font-english text-3xl 
-        lg:flex lg:flex-row lg:bg-transparent lg:text-white lg:w-1/2 lg:h-full lg:text-base lg:justify-between lg:gap-0`}
+        lg:flex lg:flex-row lg:bg-transparent lg:text-brown-100 lg:w-1/2 lg:h-full lg:text-base lg:justify-between lg:gap-0 lg:pb-0`}
       >
         {pages.map((page, idx) => (
           <Link
