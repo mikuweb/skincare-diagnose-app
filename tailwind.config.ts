@@ -23,7 +23,7 @@ const config: Config = {
         white: "#ffffff",
         leaf: {
           100: "#ccdfe3",
-          200: "#94ccdfs",
+          200: "#94ccdf",
           300: "#2b6377",
         },
         beige: {
