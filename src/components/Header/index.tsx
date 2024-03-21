@@ -24,13 +24,14 @@ const Header: FC = () => {
       } fixed flex flex-col items-start justify-between w-full z-10 
       lg:flex-row lg:items-center lg:px-4`}
     >
-      <div
+      <Link
+        href={"/"}
         className={`${
           openMenu ? "hidden" : "block"
         } w-fit h-12 flex items-center ml-3 font-english text-brown-100`}
       >
         Skin Care
-      </div>
+      </Link>
 
       <div className="absolute top-3 right-3 cursor-pointer lg:hidden">
         {openMenu ? (
