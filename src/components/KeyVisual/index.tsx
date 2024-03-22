@@ -20,7 +20,7 @@ const KeyVisual = () => {
       </div>
 
       {/* Tablet, Desktop */}
-      <div className="hidden md:flex gap-6 w-full h-[748px] pt-12 font-english text-brown-100 bg-beige-100">
+      <div className="hidden md:flex gap-6 w-full h-[748px] pt-16 font-english text-brown-100 bg-beige-100">
         {/* 左 Title */}
         <div className="flex flex-col gap-6 w-1/2 justify-center px-8">
           <h1 className="font-bold text-6xl">Skin Care</h1>

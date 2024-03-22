@@ -21,8 +21,8 @@ const Header: FC = () => {
     <nav
       className={`${
         openMenu ? "h-full bg-transparent" : "bg-white"
-      } fixed flex flex-col items-start justify-between w-full z-10 
-      lg:flex-row lg:items-center lg:px-4`}
+      } fixed flex flex-col items-start justify-between w-full z-10
+      lg:flex-row lg:items-center lg:h-16 lg:px-4`}
     >
       <Link
         href={"/"}
@@ -75,7 +75,7 @@ const Header: FC = () => {
       <div
         className={`${openMenu ? "flex" : "hidden"} 
         w-full h-3/4 flex-col justify-center gap-16 bg-beige-100 bg-opacity-90 text-center pt12 pb-16 font-english text-3xl 
-        lg:flex lg:flex-row lg:bg-transparent lg:text-brown-100 lg:w-1/2 lg:h-full lg:text-base lg:justify-between lg:gap-0 lg:pb-0`}
+        lg:flex lg:flex-row lg:bg-transparent lg:text-brown-100 lg:w-1/2 lg:h-full lg:text-base lg:justify-between lg:items-center lg:gap-0 lg:pb-0`}
       >
         {pages.map((page, idx) => (
           <Link
