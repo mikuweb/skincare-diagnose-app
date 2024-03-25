@@ -21,11 +21,10 @@ const Contents = () => {
 
       {/* 右 コンテンツ */}
       <div className="lg:w-2/3 lg:flex lg:flex-col">
-        <p className="mb-6 mx-auto w-4/5 md:text-2xl md:mb-7 lg:text-2xl lg:w-full">
+        <p className="font-title mb-6 mx-auto w-4/5 md:text-2xl md:mb-7 lg:text-2xl lg:w-full">
           まずは自分のお肌タイプを知り、
           <br />
-          それぞれのお肌悩みに合わせたスキンケアで <br />{" "}
-          美しいお肌に導きましょう
+          それぞれのお肌に合わせたスキンケアで <br /> 美しいお肌に。
         </p>
         <div className="flex flex-col items-center w-full gap-14 mx-auto md:flex-row md:gap-8 md:justify-center lg:gap-5 lg:h-full">
           <ContentItem
