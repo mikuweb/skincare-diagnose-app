@@ -1,12 +1,35 @@
 "use client";
 import { useState } from "react";
-
+import { motion, AnimatePresence } from "framer-motion";
 interface Question {
   id: number;
   question: string;
   options: string[];
   answerIdx?: number;
 }
+
+const variants = {
+  enter: {
+    opacity: 0,
+    transition: {
+      duration: 0.8,
+    },
+  },
+  center: {
+    zIndex: 1,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+    },
+  },
+  exit: {
+    zIndex: 0,
+    opacity: 0,
+    transition: {
+      duration: 0.01,
+    },
+  },
+};
 
 const SkinType = () => {
   const [questions, setQuestions] = useState<Question[]>([
@@ -73,29 +96,25 @@ const SkinType = () => {
   };
 
   return (
-    <main className="h-screen pt-12 px-5 bg-beige-100 font-english">
-      {showResult ? (
-        <>
-          <p className="text-center mb-6">結果</p>
-          <div className="border border-cyan-900 flex flex-col gap-5 text-center w-3/5 mx-auto mb-6 p-7 ">
-            {questions.map((question, idx) => (
-              <div key={idx}>
-                <p>{question.question}</p>
-                <p>{question.options[question.answerIdx!]}</p>
-              </div>
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="text-center">Progress barを表示する</div>
-          <button
-            className={`${activeQuestion === 0 ? "hidden" : ""} `}
-            onClick={backToPrevQ}
+    <div className="lg:h-screen lg:w-screen lg:bg-leaf-100 lg:flex lg:flex-col lg:justify-center lg:items-center lg:pt-14">
+      <div className="h-screen pt-16 px-5 bg-beige-100 font-english lg:w-2/3 lg:h-fit lg:rounded-3xl lg:p-6">
+        <div className="text-center">Progress barを表示する</div>
+        <button
+          className={`${activeQuestion === 0 ? "hidden" : ""} `}
+          onClick={backToPrevQ}
+        >
+          ← Back
+        </button>
+
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={activeQuestion}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="flex flex-col gap-10"
           >
-            ← Return
-          </button>
-          <div className="flex flex-col gap-10">
             {/* 質問 */}
             <div className="absolute left-0 right-0 w-64 h-64 mx-auto bg-beige-100 bg-opacity-60"></div>
             <div
@@ -119,7 +138,7 @@ const SkinType = () => {
               {questions[activeQuestion].options.map((option, idx) => (
                 <button
                   key={idx}
-                  className={` w-full rounded-md py-2 ${
+                  className={`w-full md:w-2/4 lg:w-2/3 mx-auto rounded-md py-2 ${
                     selectedAnswerIdx === idx
                       ? "bg-leaf-100"
                       : "bg-white hover:opacity-60"
@@ -151,10 +170,10 @@ const SkinType = () => {
             >
               結果を表示する（無料）
             </button>
-          </div>
-        </>
-      )}
-    </main>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
   );
 };
 
