@@ -32,7 +32,7 @@ const Question: FC<Props> = ({ questions, activeQuestion }) => {
               translateY: -10,
               transition: { duration: 0.2 },
             }}
-            className="text-leaf-300 text-xl z-10 absolute top-16"
+            className="text-leaf-300 text-xl absolute top-16"
           >
             Q{activeQuestion + 1}
           </motion.p>
@@ -49,7 +49,7 @@ const Question: FC<Props> = ({ questions, activeQuestion }) => {
               translateY: -10,
               transition: { duration: 0.2 },
             }}
-            className="w-40 text-center text-brown-10 text-sm z-10 absolute top-28"
+            className="w-40 text-center text-brown-10 text-sm absolute top-28"
           >
             {questions[activeQuestion].question}
           </motion.p>
