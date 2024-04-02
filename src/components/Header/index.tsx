@@ -13,7 +13,7 @@ const Header: FC = () => {
   const pages = [
     { name: "Home", path: "/" },
     { name: "Skin type", path: "/skin-type" },
-    { name: "Skin care product", path: "#" },
+    { name: "Skin care product", path: "/skin-care-product" },
     { name: "coming soon", path: "#" },
   ];
 
@@ -71,7 +71,6 @@ const Header: FC = () => {
           </svg>
         )}
       </div>
-
       <div
         className={`${openMenu ? "flex" : "hidden"} 
         w-full h-3/4 flex-col justify-center gap-16 bg-beige-100 bg-opacity-90 text-center pt12 pb-16 font-english text-3xl 

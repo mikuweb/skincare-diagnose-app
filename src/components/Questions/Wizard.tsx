@@ -7,6 +7,8 @@ import { querySkinType } from "@/app/actions";
 
 interface Props {
   questionList: QuestionType[];
+  bgImg: string;
+  queryData(data: QuestionType[]): Promise<any>;
 }
 
 export interface QuestionType {
@@ -16,7 +18,7 @@ export interface QuestionType {
   answerIdx?: number;
 }
 
-const Wizard: FC<Props> = ({ questionList }) => {
+const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
   const [questions, setQuestions] = useState<QuestionType[]>(questionList);
   const [activeQuestion, setActiveQuestion] = useState<number>(0);
   const [selectedAnswerIdx, setSelectedAnswerIdx] = useState<
@@ -48,7 +50,7 @@ const Wizard: FC<Props> = ({ questionList }) => {
 
   const submitAnswers = async () => {
     console.log(questions);
-    const response = await querySkinType(questions);
+    const response = await queryData(questions);
     console.log(response);
   };
 
@@ -63,7 +65,11 @@ const Wizard: FC<Props> = ({ questionList }) => {
           ← Back
         </button>
         <div className="flex flex-col gap-10">
-          <Question questions={questions} activeQuestion={activeQuestion} />
+          <Question
+            questions={questions}
+            activeQuestion={activeQuestion}
+            bgImg={bgImg}
+          />
           <Answers
             activeQuestion={activeQuestion}
             handleSelect={handleSelect}

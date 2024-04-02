@@ -5,14 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 interface Props {
   questions: QuestionType[];
   activeQuestion: number;
+  bgImg: string;
 }
 
-const Question: FC<Props> = ({ questions, activeQuestion }) => {
+const Question: FC<Props> = ({ questions, activeQuestion, bgImg }) => {
   return (
     <>
       <div
         style={{
-          backgroundImage: `url('/images/blue-flower_1.png')`,
+          backgroundImage: `url('/images/${bgImg}')`,
           height: "256px",
           width: "256px",
         }}
