@@ -31,12 +31,12 @@ const KeyVisual = () => {
       </div>
 
       {/* Tablet, Desktop */}
-      <div className="hidden lg:flex items-center h-[712px] w-full font-english text-brown-100 bg-beige-100">
+      <div className="hidden lg:flex gap-7 items-center h-[696px] w-full font-english text-brown-100 bg-beige-100">
         {/* 左 Title */}
         <div className="flex flex-col gap-8 w-1/2 justify-center pl-14">
           <AnimatedText
             text={["Grow up your", "skin with our", "AI-Powered Care"]}
-            className="max-w-xl text-6xl leading-normal"
+            className="max-w-xl text-5xl leading-normal"
             el="h1"
             duration={0.5}
             delay={0.5}
@@ -54,7 +54,7 @@ const KeyVisual = () => {
         </div>
         {/* 右 Key-visual */}
         <div
-          className="w-1/2 bg-cover h-[712px]"
+          className="w-1/2 bg-cover h-[696px]"
           style={{
             backgroundImage: `url('/images/kv.jpg')`,
           }}

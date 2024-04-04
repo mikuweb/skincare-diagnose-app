@@ -71,7 +71,6 @@ const NavMobile = () => {
                       delay: 0.1 + idx / 10,
                     }}
                     key={route.title}
-                    className=""
                   >
                     <a
                       onClick={() => setIsOpen((prev) => !prev)}
