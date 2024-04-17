@@ -7,27 +7,47 @@ const skinCareProductQuestions: QuestionType[] = [
   {
     id: 0,
     question: "今一番気になっているお肌の悩みに近いものを選んでください。",
-    options: ["シミ", "毛穴", "ニキビ", "乾燥"],
+    options: [
+      { answer: "シミ", prompt: "they hardly feel oily." },
+      {
+        answer: "毛穴",
+        prompt: "I feel oiliness only in some parts like forehead and nose",
+      },
+      { answer: "ニキビ", prompt: "the whole area feels oily." },
+      { answer: "乾燥", prompt: "the whole area feels oily." },
+    ],
   },
   {
     id: 1,
-    question: "生活習慣で当てはまるものはありますか？",
+    question:
+      "ここに質問が表示されます。ここに質問が表示されます。ここに質問が表示されます。",
     options: [
-      "日焼け止めをあまり使わない/使わなかった",
-      "炭水化物や甘いもの、脂っこい食べ物が好き",
-      "季節の変わり目に肌が荒れやすい",
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
     ],
   },
   {
     id: 2,
     question: "普段お使いのスキンケアアイテムを教えてください",
-    options: ["日焼け止め", "化粧水", "乳液", "クリーム", "美容液"],
+    options: [
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+    ],
   },
   {
     id: 3,
     question:
       "ここに質問が表示されます。ここに質問が表示されます。ここに質問が表示されます。",
-    options: ["回答選択肢", "回答選択肢", "回答選択肢"],
+    options: [
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+      { answer: "回答選択肢", prompt: "they hardly feel oily." },
+    ],
   },
 ];
 

@@ -58,7 +58,7 @@ const Answers: FC<Props> = ({
             } `}
             onClick={() => handleSelect(idx)}
           >
-            {option}
+            {option.answer}
           </motion.button>
         ))}
       </motion.div>

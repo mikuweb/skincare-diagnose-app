@@ -4,17 +4,17 @@ import Question from "./Question";
 import Answers from "./Answers";
 import Button from "./Button";
 import { querySkinType } from "@/app/actions";
+import Loader from "../Common/Loader";
 
 interface Props {
   questionList: QuestionType[];
   bgImg: string;
   queryData(data: QuestionType[]): Promise<any>;
 }
-
 export interface QuestionType {
   id: number;
   question: string;
-  options: string[];
+  options: { answer: string; prompt: string }[];
   answerIdx?: number;
 }
 
@@ -55,8 +55,10 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
   };
 
   return (
-    <div className="lg:h-screen lg:w-screen lg:bg-leaf-100 lg:flex lg:flex-col lg:justify-center lg:items-center lg:pt-14">
-      <div className="h-screen pt-16 px-5 bg-beige-100 font-english lg:w-2/3 lg:h-fit lg:rounded-3xl lg:p-6">
+    <div className="lg:h-screen lg:w-screen lg:bg-leaf-100 lg:flex lg:justify-center lg:pt-14">
+      <div className="pt-16 px-5 bg-beige-100 font-english lg:w-2/3 lg:h-fit lg:rounded-3xl lg:p-6">
+        {/* <Loader /> */}
+        {/* ここから */}
         <div className="text-center">TODO: Progress barを表示する</div>
         <button
           className={`${activeQuestion === 0 ? "hidden" : ""} `}
@@ -84,6 +86,7 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
             {lastQuestion ? "結果を表示する（無料）" : "次へ"}
           </Button>
         </div>
+        {/* ここまで */}
       </div>
     </div>
   );

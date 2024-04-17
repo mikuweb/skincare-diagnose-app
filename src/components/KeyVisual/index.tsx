@@ -18,6 +18,7 @@ const KeyVisual = () => {
           el="h1"
           duration={0.5}
           split="char"
+          once
         />
         <AnimatedText
           text={[
@@ -27,6 +28,7 @@ const KeyVisual = () => {
           el="p"
           duration={0.5}
           split="word"
+          once
         />
       </div>
 
@@ -41,6 +43,7 @@ const KeyVisual = () => {
             duration={0.5}
             delay={0.5}
             split="char"
+            once
           />
           <AnimatedText
             text={[
@@ -50,9 +53,11 @@ const KeyVisual = () => {
             el="p"
             duration={0.5}
             split="word"
+            once
           />
         </div>
         {/* 右 Key-visual */}
+        {/* 画像をふわっと表示させたい */}
         <div
           className="w-1/2 bg-cover h-[696px]"
           style={{
