@@ -51,14 +51,14 @@ const Answers: FC<Props> = ({
           <motion.button
             variants={item}
             key={idx}
-            className={`w-full md:w-2/4 lg:w-2/3 mx-auto rounded-md py-2 ${
+            className={`mx-auto w-full rounded-md py-2 md:w-2/4 lg:w-2/3 ${
               selectedAnswerIdx === idx
                 ? "bg-leaf-100"
                 : "bg-white hover:opacity-60"
             } `}
             onClick={() => handleSelect(idx)}
           >
-            {option}
+            {option.answer}
           </motion.button>
         ))}
       </motion.div>

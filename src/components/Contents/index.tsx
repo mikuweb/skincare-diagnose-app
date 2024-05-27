@@ -10,7 +10,7 @@ const Contents = () => {
   };
 
   return (
-    <div className="py-7 px-4 text-sm text-center lg:flex lg:flex-row lg:justify-center lg:gap-9 lg:py-20">
+    <div className="py-7 px-4 text-sm text-center md:py-12 lg:flex lg:flex-row lg:justify-center lg:gap-9 lg:py-20">
       {/* 左 スキンケアアイテム画像 */}
       <img
         src="/images/skin-care-items.jpg"
@@ -21,10 +21,12 @@ const Contents = () => {
 
       {/* 右 コンテンツ */}
       <div className="lg:w-2/3 lg:flex lg:flex-col">
-        <p className="font-title mb-6 mx-auto w-4/5 md:text-2xl md:mb-7 lg:text-2xl lg:w-full">
-          まずは自分のお肌タイプを知り、
-          <br />
-          それぞれのお肌に合わせたスキンケアで <br /> 美しいお肌に。
+        <p className="font-title mb-6 mx-auto w-4/5 text-brown-100 text-lg md:mb-7 md:text-xl lg:text-3xl lg:w-full">
+          あなたのお肌に
+          <br className="md:hidden" />
+          合わせたスキンケアで、
+          <br className="md:hidden lg:block" />
+          美しいお肌に。
         </p>
         <div className="flex flex-col items-center w-full gap-14 mx-auto md:flex-row md:gap-8 md:justify-center lg:gap-5 lg:h-full">
           <ContentItem
@@ -40,7 +42,7 @@ const Contents = () => {
             description1={"お肌に関する質問に答えるだけで"}
             description2={"AI分析によるおすすめスキンケア成分を提案"}
             btnText={"スキンケア提案を受ける"}
-            movePage={() => movePage("/")}
+            movePage={() => movePage("/skin-care-product")}
           />
         </div>
       </div>
