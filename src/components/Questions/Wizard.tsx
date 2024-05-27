@@ -3,8 +3,7 @@ import React, { FC, useState } from "react";
 import Question from "./Question";
 import Answers from "./Answers";
 import Button from "./Button";
-import { querySkinType } from "@/app/actions";
-import Loader from "../Common/Loader";
+import ProgressBar from "./ProgressBar";
 
 interface Props {
   questionList: QuestionType[];
@@ -55,17 +54,18 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
   };
 
   return (
-    <div className="lg:h-screen lg:w-screen lg:bg-leaf-100 lg:flex lg:justify-center lg:pt-14">
-      <div className="pt-16 px-5 bg-beige-100 font-english lg:w-2/3 lg:h-fit lg:rounded-3xl lg:p-6">
+    <div className="lg:flex lg:h-screen lg:w-screen lg:justify-center lg:bg-leaf-100 lg:pt-14">
+      <div className="h-screen bg-beige-100 px-5 pt-16 font-english lg:h-fit lg:w-2/3 lg:rounded-3xl lg:p-6">
         {/* <Loader /> */}
-        {/* ここから */}
-        <div className="text-center">TODO: Progress barを表示する</div>
         <button
           className={`${activeQuestion === 0 ? "hidden" : ""} `}
           onClick={backToPrevQ}
         >
           ← Back
         </button>
+
+        <ProgressBar activeQuestion={activeQuestion} questions={questions} />
+
         <div className="flex flex-col gap-10">
           <Question
             questions={questions}
@@ -73,9 +73,9 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
             bgImg={bgImg}
           />
           <Answers
+            questions={questions}
             activeQuestion={activeQuestion}
             handleSelect={handleSelect}
-            questions={questions}
             selectedAnswerIdx={selectedAnswerIdx}
           />
           <Button
@@ -86,7 +86,6 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
             {lastQuestion ? "結果を表示する（無料）" : "次へ"}
           </Button>
         </div>
-        {/* ここまで */}
       </div>
     </div>
   );
