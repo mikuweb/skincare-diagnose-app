@@ -8,12 +8,12 @@ import ProgressBar from "./ProgressBar";
 interface Props {
   questionList: QuestionType[];
   bgImg: string;
-  queryData(data: QuestionType[]): Promise<any>;
+  queryData(request: string[]): Promise<string>;
 }
 export interface QuestionType {
   id: number;
   question: string;
-  options: { answer: string; prompt: string }[];
+  choices: string[];
   answerIdx?: number;
 }
 
@@ -23,6 +23,7 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
   const [selectedAnswerIdx, setSelectedAnswerIdx] = useState<
     undefined | number
   >();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const lastQuestion = activeQuestion === questions.length - 1;
 
@@ -48,9 +49,23 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
   };
 
   const submitAnswers = async () => {
-    console.log(questions);
-    const response = await queryData(questions);
-    console.log(response);
+    setIsLoading(true);
+
+    const request = questions.reduce((acc, question) => {
+      const q: string = question.question;
+      const a: string = question.choices[question.answerIdx!];
+      return [...acc, q, a];
+    }, [] as string[]);
+
+    try {
+      const response = await queryData(request);
+      console.log(response);
+    } catch (error) {
+      // TODO: Errorハンドリングする
+      console.error("データの取得に失敗しました");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
