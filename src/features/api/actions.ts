@@ -13,7 +13,7 @@ export async function querySkinType(reqestQuery: string[]) {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `
-  # 肌の専門家として、以下の質問への回答を参考に、質問者の肌質、肌の特徴、対策を出力フォーマットに沿って回答してください。
+  肌の専門家として、以下の質問への回答を参考に、質問者の肌質、肌の特徴、対策を出力フォーマットに沿って回答してください。
 
   Q:${reqestQuery[0]}
   A:${reqestQuery[1]}
@@ -27,13 +27,27 @@ export async function querySkinType(reqestQuery: string[]) {
   Q:${reqestQuery[6]}
   A:${reqestQuery[7]}
 
-  # 出力フォーマット
-  あなたの肌質：{回答}
-  特徴：{回答}
-  対策（おすすめの製品は不要です）：{回答}
+  出力フォーマット
+  
+  ## あなたの肌質：  ** 回答 **
+  
+  
+  ## 特徴
+    - 回答
+    - 回答
+  
+
+  ## 対策
+    - 回答（おすすめの製品は不要です）
+    - 回答（おすすめの製品は不要です）
     `;
   const result = await model.generateContent(prompt);
   const response = await result.response;
   const text = response.text();
-  return text;
+
+  try {
+    return text;
+  } catch (error) {
+    console.error("エラー：", error);
+  }
 }
