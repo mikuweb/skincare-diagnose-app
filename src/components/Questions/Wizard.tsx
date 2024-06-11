@@ -52,6 +52,9 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
   };
 
   const submitAnswers = async () => {
+    // TODO: 責務の分離でビジネスロジックをcustom hookに切り出そうとしたが、
+    // submitAnswers関数は条件分岐で呼ばれるためこの中でhookを使うとエラーが出た
+    // Hooks can only be called inside the body of a function component.
     try {
       setIsLoading(true);
 
