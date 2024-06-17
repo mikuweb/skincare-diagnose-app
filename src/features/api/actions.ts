@@ -86,6 +86,9 @@ export async function querySkinCareProduct(reqestQuery: string[]) {
   const text = response.text();
 
   try {
+    const result = await model.generateContent(prompt);
+    const response = result.response;
+    const text = response.text();
     return text;
   } catch (error) {
     console.error("エラー：", error);
