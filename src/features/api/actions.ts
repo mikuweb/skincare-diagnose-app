@@ -81,9 +81,6 @@ export async function querySkinCareProduct(reqestQuery: string[]) {
     - 回答
     - 回答
       `;
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const text = response.text();
 
   try {
     const result = await model.generateContent(prompt);
@@ -92,5 +89,8 @@ export async function querySkinCareProduct(reqestQuery: string[]) {
     return text;
   } catch (error) {
     console.error("エラー：", error);
+    const errorMessage =
+      "申し訳ありません。現在、サーバーが正常に応答しておりません。後ほどもう一度お試しください。";
+    return errorMessage;
   }
 }
