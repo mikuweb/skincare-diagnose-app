@@ -1,11 +1,8 @@
 "use server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { env } from "process";
+import { env } from "env";
 
-const API_KEY = env.NEXT_PUBLIC_GEMINI_API_KEY;
-if (!API_KEY) {
-  throw new Error("NEXT_PUBLIC_GEMINI_API_KEY");
-}
+const API_KEY = env.NEXT_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export async function querySkinType(reqestQuery: string[]) {
