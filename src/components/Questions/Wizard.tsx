@@ -6,6 +6,8 @@ import Button from "./Button";
 import ProgressBar from "./ProgressBar";
 import Loader from "../Common/Loader";
 import Result from "./Result";
+import { useMutation } from "@tanstack/react-query";
+import WizardContainer from "./WizardContainer";
 
 interface Props {
   questionList: QuestionType[];
@@ -25,8 +27,10 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
   const [selectedAnswerIdx, setSelectedAnswerIdx] = useState<
     undefined | number
   >();
-  const [resultData, setResultData] = useState<undefined | string>(undefined);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const mutation = useMutation({
+    mutationFn: queryData,
+  });
 
   const lastQuestion = activeQuestion === questions.length - 1;
 
@@ -52,77 +56,73 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
   };
 
   const submitAnswers = async () => {
-    // TODO: 責務の分離でビジネスロジックをcustom hookに切り出そうとしたが、
-    // submitAnswers関数は条件分岐で呼ばれるためこの中でhookを使うとエラーが出た
-    // Hooks can only be called inside the body of a function component.
-    try {
-      setIsLoading(true);
+    const request = questions.reduce((acc, question) => {
+      const q: string = question.question;
+      const a: string = question.choices[question.answerIdx!];
+      return [...acc, q, a];
+    }, [] as string[]);
 
-      const request = questions.reduce((acc, question) => {
-        const q: string = question.question;
-        const a: string = question.choices[question.answerIdx!];
-        return [...acc, q, a];
-      }, [] as string[]);
-
-      const response = await queryData(request);
-      setResultData(response);
-      console.log(response);
-    } catch (error) {
-      console.error("エラー：", error);
-    } finally {
-      setIsLoading(false);
-    }
-    // TODO: ErrorハンドリングはServer側でやる？
+    mutation.mutate(request);
   };
 
+  if (mutation.isPending) {
+    return (
+      <WizardContainer>
+        <Loader />
+      </WizardContainer>
+    );
+  }
+
+  if (mutation.data !== undefined) {
+    return (
+      <WizardContainer>
+        <Result result={mutation.data} />
+      </WizardContainer>
+    );
+  }
+
+  if (mutation.isError) {
+    return (
+      <WizardContainer>
+        <p>
+          エラーが発生しました。申し訳ありませんが、もう一度やり直してください。
+        </p>
+      </WizardContainer>
+    );
+  }
+
   return (
-    <div className="lg:flex lg:h-screen lg:w-screen lg:justify-center lg:bg-leaf-100 lg:pt-14">
-      <div className="h-screen bg-beige-100 px-5 pt-16 font-english lg:h-fit lg:w-2/3 lg:rounded-3xl lg:p-6">
-        {/* <Loader /> */}
-        {resultData === undefined ? (
-          isLoading ? (
-            <Loader />
-          ) : (
-            <>
-              <button
-                className={`${activeQuestion === 0 ? "hidden" : ""} `}
-                onClick={backToPrevQ}
-              >
-                ← Back
-              </button>
+    <WizardContainer>
+      <button
+        className={`${activeQuestion === 0 ? "hidden" : ""} `}
+        onClick={backToPrevQ}
+      >
+        ← Back
+      </button>
 
-              <ProgressBar
-                activeQuestion={activeQuestion}
-                questions={questions}
-              />
+      <ProgressBar activeQuestion={activeQuestion} questions={questions} />
 
-              <div className="flex flex-col gap-10">
-                <Question
-                  questions={questions}
-                  activeQuestion={activeQuestion}
-                  bgImg={bgImg}
-                />
-                <Answers
-                  questions={questions}
-                  activeQuestion={activeQuestion}
-                  handleSelect={handleSelect}
-                  selectedAnswerIdx={selectedAnswerIdx}
-                />
-                <Button
-                  handleClick={lastQuestion ? submitAnswers : goToNextQ}
-                  bgColor={lastQuestion ? "bg-leaf-300" : "bg-leaf-200"}
-                  disabled={selectedAnswerIdx === undefined}
-                >
-                  {lastQuestion ? "結果を表示する（無料）" : "次へ"}
-                </Button>
-              </div>
-            </>
-          )
-        ) : (
-          <Result result={resultData} />
-        )}
+      <div className="flex flex-col gap-10">
+        <Question
+          questions={questions}
+          activeQuestion={activeQuestion}
+          bgImg={bgImg}
+        />
+        <Answers
+          questions={questions}
+          activeQuestion={activeQuestion}
+          handleSelect={handleSelect}
+          selectedAnswerIdx={selectedAnswerIdx}
+        />
+        <Button
+          handleClick={lastQuestion ? submitAnswers : goToNextQ}
+          bgColor={lastQuestion ? "bg-leaf-300" : "bg-leaf-200"}
+          disabled={selectedAnswerIdx === undefined}
+        >
+          {lastQuestion ? "結果を表示する（無料）" : "次へ"}
+        </Button>
       </div>
-    </div>
+    </WizardContainer>
   );
 };
 
