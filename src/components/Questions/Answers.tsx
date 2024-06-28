@@ -47,7 +47,7 @@ const Answers: FC<Props> = ({
         animate="show"
         className="flex flex-col gap-4"
       >
-        {questions[activeQuestion].options.map((option, idx) => (
+        {questions[activeQuestion].choices.map((choice, idx) => (
           <motion.button
             variants={item}
             key={idx}
@@ -58,7 +58,7 @@ const Answers: FC<Props> = ({
             } `}
             onClick={() => handleSelect(idx)}
           >
-            {option.answer}
+            {choice}
           </motion.button>
         ))}
       </motion.div>
