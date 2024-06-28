@@ -73,7 +73,7 @@ const Wizard: FC<Props> = ({ questionList, bgImg, queryData }) => {
     );
   }
 
-  if (mutation.data !== undefined) {
+  if (mutation.data !== undefined && lastQuestion) {
     return (
       <WizardContainer>
         <Result result={mutation.data} />
